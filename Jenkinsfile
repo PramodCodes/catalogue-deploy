@@ -38,7 +38,7 @@ pipeline{
             }
         }
 // the following will init the backend config with the env directory and reconfigures the environment
-        stage('Terraoform Init') {
+        stage('Terraform Init') {
             steps {
                 sh """
                    echo 'Terraform Init'
@@ -47,7 +47,7 @@ pipeline{
                 """
             }
         }
-        stage('Terraoform plan') {
+        stage('Terraform plan') {
             steps {
                 sh """
                    echo 'Terraform plan'
@@ -55,7 +55,7 @@ pipeline{
                 """
             }
         }
-        stage('Terraoform apply') {
+        stage('Terraform apply') {
             steps {
                 sh """
                    echo 'Terraform apply'
