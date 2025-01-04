@@ -64,6 +64,10 @@ pipeline{
             steps {
                 sh """
                    echo 'Terraform apply'
+                   pwd
+                   cd terraform
+                   pwd
+                   terraform apply -var-file=${params.environment}/${params.environment}.tfvars -var="app_version=${params.version}" -auto-approve
                 """
             }
         }
