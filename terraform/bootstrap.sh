@@ -12,4 +12,4 @@ pip3 install ansible botocore boto3
 # ansible pull will be used to pull the playbooks from the git repository
 # ansible pull is localhost because its installing in its own machine not connecting to any other servers for installation
 # we usually use ansible pull with cron job
-ansible-pull -U https://github.com/PramodCodes/roboshop-ansible-roles-tf.git -e component=$component -e env=$envionment -e app_version=$app_version main-tf.yaml
+ansible-pull -U https://github.com/PramodCodes/roboshop-ansible-roles-tf.git -e component=$component -e env=$envionment -e app_version=$app_version main-tf.yaml -vvv
