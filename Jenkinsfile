@@ -23,6 +23,8 @@ pipeline{
     
     parameters {
         string(name: 'version', defaultValue: '1.0.0', description: 'what is the artifact version?')
+        string(name: 'environment', defaultValue: 'dev', description: 'what is the Environment?')
+
     }
     
     //build stages
