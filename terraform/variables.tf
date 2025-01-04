@@ -26,3 +26,7 @@ variable "zone_name" {
     default = "pka.in.net"
     type = string
 }
+# this will comes from jenkins job through command line arguments
+variable "app_version" {
+  
+}

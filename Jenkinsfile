@@ -32,7 +32,19 @@ pipeline{
         stage('Print Version') {
             steps {
                 sh """
-                    echo "version is ${params.version}"
+                    echo "current build version is ${params.version}"
+                    echo "Environment is ${params.environment}"
+                """
+            }
+        }
+        stage('Terraoform Init') {
+            steps {
+                sh """
+                   echo 'Terraform Init'
+                   cd terraform
+                //the following will init the backend config with the env directory and reconfigures the environment
+                   terraform init --backend-config=${params.environment}/backend.tf -reconfigure
+                }
                 """
             }
         }
