@@ -37,6 +37,26 @@ pipeline{
                 """
             }
         }
+// the following will init the backend config with the env directory and reconfigures the environment
+        stage('Terraoform Init') {
+            steps {
+                sh """
+                   echo 'Terraform Init'
+                   cd terraform
+                    terraform init --backend-config=${params.environment}/backend.tf -reconfigure
+                }
+                """
+            }
+        }
+        stage('Terraoform plan') {
+            steps {
+                sh """
+                   echo 'Terraform plan'
+                   terraform plan -var-file=${params.environment}/${params.environment}.tfvars -var="app_version=${params.version}"
+               }
+                """
+            }
+        }
         stage('Terraoform Init') {
             steps {
                 sh """
