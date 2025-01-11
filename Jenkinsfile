@@ -65,7 +65,7 @@ pipeline{
         stage('Terraform apply') {
             when {
                 expression{
-                    params.Create == 'true'
+                    params.Create == true
                 }
             }
             steps {
@@ -81,7 +81,7 @@ pipeline{
         stage('Destory Environment') {
             when {
                 expression{
-                    params.Destroy == 'true'
+                    params.Destroy == true
                 }
             }
             steps {
