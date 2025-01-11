@@ -22,8 +22,10 @@ pipeline{
     // }
     
     parameters {
-        string(name: 'version', defaultValue: '', description: 'what is the artifact version?')
-        string(name: 'environment', defaultValue: '', description: 'what is the Environment?')
+        string(name: 'version', defaultValue: '1.2.0', description: 'what is the artifact version?')
+        string(name: 'environment', defaultValue: 'dev', description: 'what is the Environment?')
+        booleanParam(name: 'Destroy', defaultValue: 'false', description: 'Do you want to destroy environment?')
+        booleanParam(name: 'Create', defaultValue: 'true', description: 'Do you want to create environment?')
 
     }
     
@@ -61,6 +63,11 @@ pipeline{
             }
         }
         stage('Terraform apply') {
+            when {
+                expression{
+                    params.Create == 'true'
+                }
+            }
             steps {
                 sh """
                    echo 'Terraform apply'
@@ -68,6 +75,23 @@ pipeline{
                    cd terraform
                    pwd
                    terraform apply -var-file=${params.environment}/${params.environment}.tfvars -var="app_version=${params.version}" -auto-approve
+                """
+            }
+        }
+        stage('Destory Environment') {
+            when {
+                expression{
+                    params.Destroy == 'true'
+                }
+            }
+            steps {
+                sh """
+                   echo 'Terraform destroy'
+                   pwd
+                   cd terraform
+                   pwd
+                   terraform apply -var-file=${params.environment}/${params.environment}.tfvars -var="app_version=${params.version}" -auto-approve
+                    echo 'destroyed catalogue deployment'
                 """
             }
         }
