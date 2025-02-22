@@ -1,15 +1,16 @@
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
-      version = "5.81.0" 
+      source  = "hashicorp/aws"
+      version = "5.31.0" # AWS provider version, not terraform version
     }
   }
-    backend "s3" {
-    bucket = "pka.in.net-dev"
-    key    = "catalogue"
-    region = "us-east-1"
-    dynamodb_table = "pka.in.net-dev"
+
+  backend "s3" {
+    bucket         = "daws76s-state-dev"
+    key            = "catalogue"
+    region         = "us-east-1"
+    dynamodb_table = "daws76s-locking-dev"
   }
 }
 

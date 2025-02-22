@@ -1,35 +1,32 @@
 variable "common_tags" {
-    default = {
-        Project = "roboshop"
-        Environment = "dev"
-        Terraform = true
-    }
+  default = {
+    Project     = "roboshop"
+    Environment = "dev"
+    Terraform   = "true"
+  }
 }
 
 variable "tags" {
-    default = {
-        Componenet = "catalogue"
-    }
+  default = {
+    Component = "catalogue"
+  }
 }
 
 variable "project_name" {
-    default = "roboshop"
-    type = string
+  default = "roboshop"
 }
-
 variable "environment" {
-    default = "dev"
-    type = string
+  default = "dev"
 }
 
 variable "zone_name" {
-    default = "pka.in.net"
-    type = string
+  default = "daws76s.online"
 }
-variable "iam_instance_profile" {
-  default = "ec2-role-shell-script"
-}
-# this will comes from jenkins job through command line arguments
-variable "app_version" {
+
+variable app_version {
   
+}
+
+variable "iam_instance_profile" {
+  default = "ShellScriptRoleForRoboshop"
 }

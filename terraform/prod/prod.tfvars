@@ -1,6 +1,6 @@
 environment = "prod"
 common_tags = {
-    Project = "roboshop"
+    Project     = "roboshop"
     Environment = "prod"
-    Terraform = true
+    Terraform   = "true"
 }
